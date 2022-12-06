@@ -1,0 +1,16 @@
+@font-face {
+    font-family: lotrFont;
+    src: url(../../fonts/Middleearth-ao6m.ttf);
+  }
+
+.allcharachters_page_outer_wrapper {
+    background: url(../../images/mainPageImg.jpg);
+    animation-name: invisible_visible;
+    animation-duration: 2s;
+  }
+
+@keyframes invisible_visible {  
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
