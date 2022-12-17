@@ -5,7 +5,8 @@
 
 .main_page_outer_wrapper {
   background: url(../../images/mainPageImg.jpg);
-  overflow-y: scroll;
+  animation-name: invisible_visible;
+  animation-duration: 2s;
 }
 
 .main_page_inner_wrapper {
@@ -26,7 +27,6 @@
     & p {
       font-family: lotrFont;
       text-indent: 50px;
-      text-align: left;
     }
 }
 
@@ -35,4 +35,9 @@ h1 {
   text-align: center;
   margin: 10px 0 10px 0;
 
+}
+
+@keyframes invisible_visible {  
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
