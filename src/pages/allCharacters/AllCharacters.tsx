@@ -13,7 +13,7 @@ const AllCharacters:React.FC = () => {
     const [character, setCharacter] = useState<ICharacter>();
 
     const searchedCharacter = (charName:string): void => {
-        setCharacter(characters.find(({ name }) => name === charName));
+        setCharacter(characters.find(({ name }) => name.toLowerCase() === charName.toLowerCase()));
     };
     
     useEffect(() => {

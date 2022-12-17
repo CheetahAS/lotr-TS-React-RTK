@@ -15,8 +15,8 @@
   }
 
   .modal_window {
-    width: 500px;
-    height: 700px;
+    width: 31rem;
+    height: 43.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,7 +24,7 @@
     background: url('../../images/mainPageImg.jpg');
     border-radius: 20px;
     padding-top: 40px;
-    margin-top: -100px;
+    margin-bottom: 100px;
   }
 
   .modal_container button {
@@ -33,7 +33,7 @@
     width: 2.5rem;
     height: 2.5rem;
     position: relative;
-    top: -23.8rem;
+    bottom: 23.6rem;
     right: 2.5rem;
     border-radius: 50%;
     border: none;

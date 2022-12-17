@@ -15,11 +15,12 @@ const AppRouter:React.FC = () => {
 
     return (
         <Routes>
+            <Route path='/*' element={<LoginPage logIn={logIn}/>}/>
             <Route path='/login' element={<LoginPage logIn={logIn}/>}/>
             <Route path="/main" element={<MainPage/>}/>
             <Route path='/all-lotr-characters' element={<AllCharacters/>}/> 
             <Route path='/random-character' element={<RandomCharacter/>}/>
-            <Route path='/???' element={<MainPage/>}/> {/* Some tab to add lately */}
+            <Route path='/???' element={<LoginPage logIn={logIn}/>}/> {/* Some tab to add latelys */}
         </Routes> 
     );
 };

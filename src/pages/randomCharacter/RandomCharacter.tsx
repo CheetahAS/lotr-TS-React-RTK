@@ -13,10 +13,10 @@ export const BASE_URL = "https://the-one-api.dev/v2/character";
 const RandomCharacter:React.FC = () => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [inputedName, setInputedName] = useState<string>('');
+    const [character, setCharacter] = useState<ICharacter>();
 
-    function searchedCharacter(charName:string) {
-        setInputedName(charName);
+    const searchedCharacter = (charName:string): void => {
+        setCharacter(characters.find(({ name }) => name.toLowerCase() === charName.toLowerCase()));
     };
 
     const someNumber = getRandom();
@@ -59,7 +59,7 @@ const RandomCharacter:React.FC = () => {
             <>
             <Layout setIsModalVisible={setIsModalVisible} searchedCharacter={(charName) => searchedCharacter(charName)}/>
 
-            {/* {isModalVisible && <Modal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} inputedName={inputedName}/>}  */}
+            {isModalVisible && character && <Modal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} character={character}/>}
 
             <div className={style.random_character_page_outer_wrapper}>
                 <div className={style.random_character_container}>
@@ -70,7 +70,7 @@ const RandomCharacter:React.FC = () => {
                     }
                     <button 
                         className={style.random_character_button} 
-                        onClick={() => getRandomCharacter() }
+                        onClick={getRandomCharacter}
                     >get a random character!
                     </button>
                 </div>

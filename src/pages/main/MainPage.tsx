@@ -1,23 +1,30 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Layout from '../../components/layout/Layout';
 import Modal from '../../components/Modal/Modal';
 import style from './MainPage.module.scss';
+import { ICharacter } from '../../services/types';
+import { getAllCharacters } from '../../services/Api';
 
 
 
 const MainPage:React.FC = () => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [inputedName, setInputedName] = useState<string>('');
+    const [characters, setCharacters] = useState<ICharacter[]>([]);
+    const [character, setCharacter] = useState<ICharacter>();
 
-    function searchedCharacter(charName:string) {
-        setInputedName(charName);
+    const searchedCharacter = (charName:string): void => {
+        setCharacter(characters.find(({ name }) => name.toLowerCase() === charName.toLowerCase()));
     };
+
+    useEffect(() => {
+        getAllCharacters().then(result => setCharacters(result));
+    }, []);
 
     return (
         <>
         <Layout setIsModalVisible={setIsModalVisible} searchedCharacter={(charName) => searchedCharacter(charName)}/>
-        {/* {isModalVisible && <Modal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} inputedName={inputedName}/>}  */}
+        {isModalVisible && character && <Modal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} character={character}/>}
         <div className={style.main_page_outer_wrapper}>
             <h1>J. R. R. Tolkien</h1>
             <div className={style.main_page_inner_wrapper}>
