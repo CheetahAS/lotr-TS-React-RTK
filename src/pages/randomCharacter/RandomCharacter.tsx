@@ -59,7 +59,7 @@ const RandomCharacter:React.FC = () => {
             <>
             <Layout setIsModalVisible={setIsModalVisible} searchedCharacter={(charName) => searchedCharacter(charName)}/>
 
-            {isModalVisible && <Modal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} inputedName={inputedName}/>} 
+            {/* {isModalVisible && <Modal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} inputedName={inputedName}/>}  */}
 
             <div className={style.random_character_page_outer_wrapper}>
                 <div className={style.random_character_container}>

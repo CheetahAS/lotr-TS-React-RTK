@@ -17,7 +17,7 @@ const MainPage:React.FC = () => {
     return (
         <>
         <Layout setIsModalVisible={setIsModalVisible} searchedCharacter={(charName) => searchedCharacter(charName)}/>
-        {isModalVisible && <Modal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} inputedName={inputedName}/>} 
+        {/* {isModalVisible && <Modal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} inputedName={inputedName}/>}  */}
         <div className={style.main_page_outer_wrapper}>
             <h1>J. R. R. Tolkien</h1>
             <div className={style.main_page_inner_wrapper}>
