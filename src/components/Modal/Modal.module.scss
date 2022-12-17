@@ -1,0 +1,50 @@
+@font-face {
+    font-family: lotrFont;
+    src: url(../../fonts/Middleearth-ao6m.ttf);
+  }
+
+.modal_container {
+    width: 100vw;
+    height: 100vh;
+    background: rgb(0, 0, 0, 0.5);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .modal_window {
+    width: 500px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url('../../images/mainPageImg.jpg');
+    border-radius: 20px;
+    padding-top: 40px;
+    margin-top: -100px;
+  }
+
+  .modal_container button {
+    font-family: lotrFont;
+    font-size: 1.2rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    position: relative;
+    top: -23.8rem;
+    right: 2.5rem;
+    border-radius: 50%;
+    border: none;
+    background-color: rgb(0, 0, 0, 0);
+    }
+
+  .modal_container button:hover {
+    cursor: pointer;
+    background: rgb(#a6cfeb, 0.8);
+    }
+
+    
+
+

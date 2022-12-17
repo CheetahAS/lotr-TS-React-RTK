@@ -3,14 +3,21 @@
     src: url(../../fonts/Middleearth-ao6m.ttf);
   }
 
-.allcharachters_page_outer_wrapper {
+.all_charachters_page_outer_wrapper {
     background: url(../../images/mainPageImg.jpg);
-    animation-name: invisible_visible;
-    animation-duration: 2s;
   }
 
-@keyframes invisible_visible {  
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-  
+
+    .character_container {
+      padding: 2rem 2rem 2rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-row-gap: 5rem;
+      justify-items: center;
+      overflow: scroll;
+    }
+      
+      
+
+
+
