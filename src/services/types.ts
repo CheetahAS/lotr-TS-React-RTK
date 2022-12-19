@@ -24,3 +24,4 @@ export interface ICharacterSmall {
 export interface IResponseCharacter {
     docs: ICharacter[]
 };
+

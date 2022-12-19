@@ -1,43 +1,38 @@
 @font-face {
-    font-family: lotrFont;
-    src: url(../../fonts/Middleearth-ao6m.ttf);
-  }
+  font-family: lotrFont;
+  src: url(../../fonts/Middleearth-ao6m.ttf);
+}
 
 .main_page_outer_wrapper {
-  background: url(../../images/mainPageImg.jpg);
-  animation-name: invisible_visible;
-  animation-duration: 2s;
+background: url(../../images/mainPageImg.jpg);
+overflow-y: scroll;
 }
 
 .main_page_inner_wrapper {
-    display: flex;
-    flex-direction: row;
-    min-height: 100%;
-    margin: 15px;
-    padding: 20px;
-    max-width: 100vw;
+  display: flex;
+  flex-direction: row;
+  min-height: 100%;
+  margin: 15px;
+  padding: 20px;
+  max-width: 100vw;
+  font-family: lotrFont;
+
+  & img {
+    float: left;
+    height: 50vh;
+    margin-right: 20px;  
+  }
+
+  & p {
     font-family: lotrFont;
-
-    & img {
-      float: left;
-      height: 50vh;
-      margin-right: 20px;  
-    }
-
-    & p {
-      font-family: lotrFont;
-      text-indent: 50px;
-    }
+    text-indent: 50px;
+    text-align: left;
+  }
 }
 
 h1 {
-  font-family: lotrFont;
-  text-align: center;
-  margin: 10px 0 10px 0;
+font-family: lotrFont;
+text-align: center;
+margin: 10px 0 10px 0;
 
-}
-
-@keyframes invisible_visible {  
-  from {opacity: 0;}
-  to {opacity: 1;}
 }

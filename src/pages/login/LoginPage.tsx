@@ -40,7 +40,6 @@ const LoginPage:React.FC<MainPageProps> = ({logIn}) => {
                             disabled = {textFieldValue ? false : true}
                         >log in</button>
                     </Link>
-                    
                 </div>
         </div>
     );
