@@ -1,6 +1,11 @@
-import React from 'react';
-import NavBar from '../../components/navbar/NavBar';
+import React, {useState, useEffect, useCallback} from 'react';
+import CharacterCard from '../../components/characterCard/CharacterCard';
+import Layout from '../../components/layout/Layout';
 import style from './RandomCharacter.module.scss'
+import { ICharacter } from '../../services/types';
+import { getRandom } from '../../services/randomiser';
+import { useSearchParams } from 'react-router-dom';
+import Modal from '../../components/Modal/Modal';
 
 export const BASE_URL = "https://the-one-api.dev/v2/character";
 

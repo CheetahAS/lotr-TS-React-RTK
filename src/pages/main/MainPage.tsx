@@ -5,7 +5,7 @@ import style from './MainPage.module.scss';
 import { ICharacter } from '../../services/types';
 import { getAllCharacters } from '../../services/Api';
 
-
+export const BASE_URL = "https://the-one-api.dev/v2/character";
 
 const MainPage:React.FC = () => {
 
