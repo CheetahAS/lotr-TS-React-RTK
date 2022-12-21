@@ -9,30 +9,42 @@ overflow-y: scroll;
 }
 
 .main_page_inner_wrapper {
-  display: flex;
-  flex-direction: row;
-  min-height: 100%;
-  margin: 15px;
-  padding: 20px;
-  max-width: 100vw;
+  margin: 1rem;
   font-family: lotrFont;
+  display: flex;
 
   & img {
     float: left;
     height: 50vh;
-    margin-right: 20px;  
+    margin-right: 1.5rem;  
   }
 
   & p {
     font-family: lotrFont;
-    text-indent: 50px;
+    text-indent: 3rem;
     text-align: left;
+  }
+}
+
+@media (max-width: 30rem) {
+  .main_page_inner_wrapper {
+    display: flex;
+    flex-direction: column;
+
+    & img {
+      margin: 0 0 1rem 0; 
+      height: 50vh;
+      display: block;
+      max-width: 100vw;
+      margin-right: auto;
+      margin-left: auto;
+    }
   }
 }
 
 h1 {
 font-family: lotrFont;
+font-size: 2rem;
 text-align: center;
-margin: 10px 0 10px 0;
-
+margin: 1rem 0 1rem 0;
 }

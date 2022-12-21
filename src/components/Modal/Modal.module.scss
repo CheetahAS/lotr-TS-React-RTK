@@ -12,6 +12,7 @@
   align-items: center;
   justify-content: center;
   z-index: 10;
+  //border: 2px solid green;
 }
 
 .modal_window {
@@ -22,9 +23,11 @@
   align-items: center;
   justify-content: center;
   background: url('../../images/mainPageImg.jpg');
-  border-radius: 20px;
-  padding-top: 40px;
-  margin-bottom: 100px;
+  border-radius: 1.25rem;
+  padding-top: 2.5rem;
+  margin-bottom: 6.25rem;
+  //border: 2px solid blue;
+  margin-left: 2rem;
 }
 
 .modal_container button {
@@ -45,6 +48,220 @@
   background: rgb(#a6cfeb, 0.8);
   }
 
-    
+  @media (max-width: 30rem) {
+    .modal_window {
+      width: 25rem;
+      height: 37rem;
+      margin-left: 1.65rem;
+      margin-bottom: 15.5rem;
+    }
+
+    .modal_container button {
+      bottom: 25.3rem;
+      right: 1.8rem;
+  }
+}
+
+@media (max-width: 25rem) {
+  .modal_window {
+    width: 22rem;
+    height: 25rem;
+    margin-left: 1.65rem;
+    margin-bottom: 16.5rem;
+    margin-top: 0;
+  }
+
+  .modal_container button {
+    bottom: 19.8rem;
+    right: 1.8rem;
+  }
+}
+
+  @media (max-height: 50rem) {
+    .modal_container {
+      height: 100%;
+    }
+
+    .modal_window {
+      margin-top: 1rem;
+    }
+
+    .modal_container button {
+      bottom: 19.4rem;
+      right: 1.8rem;
+    }
+  }
+
+  @media (max-height: 38rem) {
+    .modal_window {
+      width: 23rem;
+      height: 25rem;
+      margin-left: 1.65rem;
+      margin-bottom: 15.25rem;
+      margin-top: 7rem;
+    }
+
+    .modal_container button {
+      bottom: 15.4rem;
+      right: 2.5rem;
+    }
+  }
+
+  @media (min-width: 80rem) {
+    .modal_container button {
+      bottom: 23.2rem;
+      right: 2.5rem;
+    }
+  }
+
+  @media (max-height: 48rem) {
+    .modal_window {
+      margin-bottom: 16.2rem;
+    }
+  
+    .modal_container button {
+      bottom: 28.0rem;
+      right: 2.5rem;
+    }
+  }
+
+  @media (max-height: 45rem) {
+    .modal_window {
+      width: 24rem;
+      height: 29rem;
+      margin-left: 1.65rem;
+      margin-bottom: 21.5rem;
+      margin-top: 8.5rem;
+    }
+
+    .modal_container button {
+      bottom: 19.8rem;
+      right: 2.5rem;
+    }
+  }
+
+  @media (max-height: 42rem) {
+    .modal_window {
+      width: 22rem;
+      height: 25rem;
+      margin-bottom: 24.2rem;
+    }
+
+    .modal_container button {
+      bottom: 19.3rem;
+      right: 1.8rem;
+    }
+  }
+
+  @media (max-height: 33.8rem) {
+    .modal_window {
+      width: 23rem;
+      margin-bottom: 16.5rem;
+    }
+
+    .modal_container button {
+      right: 2.2rem;
+      bottom: 15.5rem;
+    }
+  }
+
+@media (max-height: 25.9rem) {
+  .modal_window {
+    margin-bottom: 26.2rem;
+  }
+
+  .modal_container button {
+    bottom: 20.3rem;
+    right: 2.2rem;
+  }
+}
+
+@media (max-height: 24.6rem) {
+  .modal_window {
+    width: 24rem;
+    height: 23.6rem;
+    margin-bottom: 26.2rem;
+  }
+  .modal_container button {
+    bottom: 19.7rem;
+    right: 2.2rem;
+  }
+}
+
+@media (max-height: 24.4rem) {
+  .modal_window {
+    width: 23rem;
+    height: 23.5rem;
+    margin-bottom: 26.2rem;
+  }
+  .modal_container button {
+    bottom: 19.7rem;
+    right: 2.2rem;
+  }
+}
+
+@media (max-height: 23.5rem) {
+  .modal_window {
+    width: 23.5rem;
+    height: 23rem;
+    margin-bottom: 29.4rem;
+  }
+
+  .modal_container button {
+    bottom: 21.0rem;
+    right: 2.3rem;
+  }
+}
+
+  @media (max-height: 23rem) {
+    .modal_window {
+      height: 23rem;
+      width: 26rem;
+      margin-bottom: 31.4rem;
+    }
+
+    @media (max-height: 22.5rem) {
+      .modal_window {
+        height: 22rem;
+        width: 24rem;
+        margin-bottom: 24.4rem;
+      }
+    } 
+
+    .modal_container button {
+      bottom: 18.1rem;
+      right: 2.5rem;
+    }
+  }
+
+  @media (max-height: 17.5rem) {
+    .modal_window {
+      height: 16rem;
+      width: 26rem;
+      margin-bottom: 29.4rem;
+    }
+
+    .modal_container button {
+      bottom: 17.6rem;
+      right: 2.4rem;
+    }
+  }
+
+
+///////////////////////
+  @media (max-width: 17.5rem) {
+    .modal_window {
+      width: 16rem;
+      height: 16rem;
+      margin-left: 1.65rem;
+      margin-bottom: 21.5rem;
+      margin-top: 0;
+    }
+
+    .modal_container button {
+      bottom: 18.1rem;
+      right: 1.8rem;
+    }
+  }
 
 

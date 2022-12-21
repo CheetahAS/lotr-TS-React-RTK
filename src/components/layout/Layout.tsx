@@ -61,7 +61,7 @@ const Layout:React.FC<LayoutProps> = ({setIsModalVisible, searchedCharacter}) =>
             </div>
             <div className={style.appBar__search_wrapper}>
               <input className={style.appBar__search} placeholder="enter name of the char." onChange={inputHandler} value={inputValue}/>
-              <button onClick={modalBtnHandler} disabled={!inputValue? true: false}>find!</button>
+              <button onClick={modalBtnHandler} disabled={!inputValue}>find!</button>
             </div>
             <div className={style.appBar__logout}>
               <span>Hello, <strong>{getCookie('name')}</strong>!</span>

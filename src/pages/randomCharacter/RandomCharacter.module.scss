@@ -16,7 +16,7 @@ align-items: center;
 
 :first-child {
   margin-top: 1.5rem;
-}
+  }
 }
 
 .random_character_button {
@@ -29,5 +29,43 @@ font-family: lotrFont;
 &:hover {
   background-color:#a6cfeb;
   cursor: pointer;
+  }
 }
+
+@media (max-height: 51.3rem) {
+  .random_character_button {
+    margin-top: 1rem;
+  }
+
+  .random_character_container {
+    :first-child {
+      margin-top: 0.75rem;
+      }
+  }
+}
+
+@media (max-width: 25.9rem) {
+  .random_character_button {
+    width: 17rem;
+    margin-top: 1rem;
+  }
+
+  .random_character_container {
+    :first-child {
+      margin-top: 0.75rem;
+      }
+  }
+}
+
+@media (max-width: 17.5rem) {
+  .random_character_button {
+    width: 15rem;
+    margin-top: 0.5rem;
+  }
+
+  .random_character_container {
+    :first-child {
+      margin-top: 0.25rem;
+      }
+  }
 }
