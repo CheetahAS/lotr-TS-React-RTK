@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import style from './LoginPage.module.scss'
 import { Link } from "react-router-dom"
-import { setCookie, removeCookie } from 'typescript-cookie';
+import { setCookie, removeCookie, getCookie } from 'typescript-cookie';
 
 
 interface MainPageProps {

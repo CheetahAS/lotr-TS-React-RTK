@@ -26,6 +26,14 @@
     }
   }
 
+  @media (max-width: 111rem) {
+    .character_container {
+      display: grid;
+      grid-template-columns: repeat(2, 0.5fr);
+      padding: 3rem 0rem 0 0;
+    }
+  }
+
 
   @media (max-width: 85.6rem) {
     .character_container {

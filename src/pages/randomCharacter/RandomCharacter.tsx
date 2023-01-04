@@ -6,6 +6,7 @@ import { ICharacter } from '../../services/types';
 import { getRandom } from '../../services/randomiser';
 import { useSearchParams } from 'react-router-dom';
 import Modal from '../../components/Modal/Modal';
+import { getAllCharacters, getIDCharacter } from '../../services/Api';
 
 export const BASE_URL = "https://the-one-api.dev/v2/character";
 
@@ -38,22 +39,11 @@ const RandomCharacter:React.FC = () => {
 
     useEffect(() => {
         if(paramsId) {
-            const char = characters.find(({_id}) => _id === paramsId);
-            if(char) {
-                setRandomCharacter(char);
-            }
+            getIDCharacter(paramsId).then(resp => setCharachters(resp));
+        } else {
+            getAllCharacters().then(resp => setCharachters(resp));
         }
     }, [characters, paramsId]);
-
-    useEffect(() => {
-        fetch(BASE_URL, {
-            headers: {
-                Authorization: 'Bearer RvUZKnn3jhhUA2PEhvOO'
-            }
-        })
-        .then((res) => res.json())
-        .then((data) => setCharachters(() => data.docs));
-    }, [characters.length]);
 
         return (
             <>
