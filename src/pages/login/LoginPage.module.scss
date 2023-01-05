@@ -1,63 +1,68 @@
-    @font-face {
-        font-family: lotrFont;
-        src: url(../../fonts/Middleearth-ao6m.ttf);
-    }
+@font-face {
+    font-family: lotrFont;
+    src: url(../../fonts/Middleearth-ao6m.ttf);
+}
 
 .login_page_outer_wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100vw;
-    flex-direction: column;
-    background-image: url('../../images/lotr.jpg');
-    background-position: center;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 100vh;
+width: 100vw;
+flex-direction: column;
+background-image: url('../../images/lotr.jpg');
+background-position: center;
+background-size: cover;
 
-    & h1 {
-        text-align: center;
-        margin-bottom: 10vh;
-        font-size: 40px;
-        font-family: lotrFont;
-        animation-name: invisible_visible_loginPage;
-        animation-duration: 2s;
-        animation-timing-function: linear;
-    }
+& h1 {
+    text-align: center;
+    margin-bottom: 10vh;
+    font-size: 40px;
+    font-family: lotrFont;
+    animation-name: invisible_visible_loginPage;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+}
 
 }
 
 .login_page_inner_wrapper {
-    display: flex;
-    opacity: 0;
-    animation-name: invisible_visible_loginPage;
-    animation-duration: 1.5s;
-    animation-delay: 3.5s;
-    animation-fill-mode: forwards;
-    animation-timing-function: linear;
+display: flex;
+opacity: 0;
+animation-name: invisible_visible_loginPage;
+animation-duration: 1.5s;
+animation-delay: 3.5s;
+animation-fill-mode: forwards;
+animation-timing-function: linear;
 
-    & :first-child {
-        margin-right: 5px;
-    }
+& :first-child {
+    margin-right: 5px;
+}
 }
 
 .login_input, .login_btn {
-    font-family: lotrFont;
-    background: #AA9D74;
-    border-radius: 15px;
-    text-align: center;
-    color: #162027;
+font-family: lotrFont;
+background: #AA9D74;
+border-radius: 15px;
+text-align: center;
+color: #162027;
 }
 
 .login_input:hover, .login_btn:hover {
-    opacity: 0.8;
+opacity: 0.8;
+}
+
+.login_btn:hover {
+cursor: pointer;
 }
 
 ::placeholder {
-    color: #162027;
+color: #162027;
 }
 
 @keyframes invisible_visible_loginPage {  
-    from {opacity: 0;}
-    to {opacity: 0.8;}
+from {opacity: 0;}
+to {opacity: 0.8;}
 }
 
 
