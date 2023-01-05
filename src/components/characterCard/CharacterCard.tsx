@@ -62,7 +62,7 @@ const CharacterCard:React.FC<CharacterCardProps> = ({character}) => {
                 {!character.wikiUrl ?
                 <p>wikiUrl: unknown</p>
                 :
-                <p>wikiUrl: <br /><a href={character.wikiUrl} target="_blank">{character.wikiUrl}</a></p>
+                <p>wikiUrl: <br /><a href={character.wikiUrl} target="_blank" rel="noreferrer">{character.wikiUrl}</a></p>
                 }
             </div>
         </div>

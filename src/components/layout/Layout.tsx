@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { ChangeEvent, useState } from 'react'
 import style from './Layout.module.scss';
-import { getCookie, removeCookie } from 'typescript-cookie';
+import { getCookie } from 'typescript-cookie';
 
 
 interface LayoutProps {

@@ -26,7 +26,7 @@ const RandomCharacter:React.FC = () => {
     const [randomCharacter, setRandomCharacter] = useState<ICharacter>(characters[someNumber]);
 
     const [search, setSearch] = useSearchParams();
-    const [paramsId, setParamsId] = useState(search.get("id"));
+    const paramsId = search.get("id");
 
     const getRandomCharacter = useCallback(() => {
         if(characters.length) {
@@ -34,7 +34,7 @@ const RandomCharacter:React.FC = () => {
             setSearch( {id: randomCharacter._id} );
             }
         }
-        , [characters, randomCharacter, setSearch]
+        , [characters, randomCharacter, setSearch, someNumber]
     );
 
     useEffect(() => {
