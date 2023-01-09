@@ -1,30 +1,30 @@
 import React from 'react';
 import { ICharacterSmall } from '../../services/types';
 import style from './CharacterCardSmall.module.scss'
+import { someSlice } from '../../store/inputReducer';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
+const CharacterCardSmall:React.FC = () => {
 
-interface CharacterCardProps {
-    characterSmall: ICharacterSmall
-}
-
-const CharacterCardSmall:React.FC<CharacterCardProps> = ({characterSmall}) => {
+    const {inputText, isModalVisible, searchedCharacter} = useAppSelector(state => state.inputReducer);
+    const {changeInputText, openModal, closeModal} = someSlice.actions;
+    const dispatch = useAppDispatch();  
 
     return (
         <div className={style.character_wrapper}>
             <div className={style.character}>
                 <div className={style.image}/>
+                <h1>{searchedCharacter.name}</h1>
 
-                <h1>{characterSmall.name}</h1>
-
-                {!characterSmall.race ? 
+                {!searchedCharacter.race ? 
                 <p>race: unknown</p>
                 :
-                <p>race: {characterSmall.race}</p>
+                <p>race: {searchedCharacter.race}</p>
                 }
-                {!characterSmall.wikiUrl ?
+                {!searchedCharacter.wikiUrl ?
                 <p>wikiUrl: unknown</p>
                 :
-                <p>wikiUrl: <br /><a href={characterSmall.wikiUrl} target="_blank" rel="noreferrer">{characterSmall.wikiUrl}</a></p>
+                <p>wikiUrl: <br /><a href={searchedCharacter.wikiUrl} target="_blank" rel="noreferrer">{searchedCharacter.wikiUrl}</a></p>
                 }
             </div>
         </div>

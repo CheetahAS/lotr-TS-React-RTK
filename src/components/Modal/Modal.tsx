@@ -2,28 +2,33 @@ import React from "react";
 import CharacterCardSmall from "../characterCardSmall/CharacterCardSmall";
 import style from "./Modal.module.scss";
 import { ICharacter } from "../../services/types";
+import { someSlice } from '../../store/inputReducer';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
-interface ModalProps {
-  isModalVisible: boolean;
-  setIsModalVisible: (value: boolean) => void;
-  character: ICharacter;
-}
 
-const Modal: React.FC<ModalProps> = ({
-  isModalVisible,
-  setIsModalVisible,
-  character,
-}) => (
-  <>
+
+
+const Modal: React.FC = () => {
+  const {inputText, isModalVisible} = useAppSelector(state => state.inputReducer);
+  const {changeInputText, closeModal, clearSearchedCharacter} = someSlice.actions;
+  const dispatch = useAppDispatch();
+
+  return (
+<>
     {isModalVisible && (
       <div className={style.modal_container}>
         <div className={style.modal_window}>
-          <CharacterCardSmall characterSmall={character} key={character._id} />
+          <CharacterCardSmall/>
         </div>
-        <button onClick={() => setIsModalVisible(false)}>x</button>
+        <button onClick={() => {
+            dispatch( closeModal() )
+            dispatch( changeInputText('') )
+            dispatch ( clearSearchedCharacter() );
+            }}>x</button>
       </div>
     )}
   </>
-);
+  )
+};
 
 export default Modal;

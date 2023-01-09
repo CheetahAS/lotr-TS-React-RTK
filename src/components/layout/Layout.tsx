@@ -2,29 +2,32 @@ import { NavLink } from 'react-router-dom';
 import { ChangeEvent, useState } from 'react'
 import style from './Layout.module.scss';
 import { getCookie } from 'typescript-cookie';
+import { someSlice } from '../../store/inputReducer';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { useEffect } from 'react';
+import { getAllCharacters } from '../../services/Api';
 
 
-interface LayoutProps {
-  setIsModalVisible: (boolean: boolean) => void
-  searchedCharacter: (charName:string) => void
-}
+const Layout:React.FC = () => {
 
+  const {inputText, isModalVisible, allCharacters} = useAppSelector(state => state.inputReducer);
+  const {changeInputText, openModal, defineSearchedCharacter, fetchAllCharacters, clearSearchedCharacter} = someSlice.actions;
+  const dispatch = useAppDispatch();
 
-
-const Layout:React.FC<LayoutProps> = ({setIsModalVisible, searchedCharacter}) => {
-
-  const [inputValue, setInputValue] = useState<string>('');
+  const inputedCharacter = allCharacters.find((chrs) => chrs.name.toLowerCase() === inputText.toLowerCase())
 
   const modalBtnHandler = () => {
-    if(inputValue) {
-      setIsModalVisible(true);
-      searchedCharacter(inputValue);
-      setInputValue('')
+    if(inputedCharacter && inputText) {
+      dispatch( defineSearchedCharacter(inputedCharacter) );
+      dispatch( openModal() );
+    }
+    else {
+      dispatch( changeInputText('') );
     }
   };
 
   const inputHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.currentTarget.value);
+    dispatch( changeInputText(event.currentTarget.value) );
   };
 
   return (
@@ -60,8 +63,8 @@ const Layout:React.FC<LayoutProps> = ({setIsModalVisible, searchedCharacter}) =>
                   
             </div>
             <div className={style.appBar__search_wrapper}>
-              <input className={style.appBar__search} placeholder="enter name of the char." onChange={inputHandler} value={inputValue}/>
-              <button onClick={modalBtnHandler} disabled={!inputValue}>find!</button>
+              <input className={style.appBar__search} placeholder="enter name of the char." onChange={inputHandler} value={inputText}/>
+              <button onClick={modalBtnHandler} disabled={!inputText}>find!</button>
             </div>
             <div className={style.appBar__logout}>
               <span>Hello, <strong>{getCookie('name')}</strong>!</span>
