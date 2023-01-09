@@ -1,7 +1,7 @@
 import React from 'react';
 import { ICharacter } from '../../services/types';
 import style from './CharacterCard.module.scss'
-import { someSlice } from '../../store/inputReducer';
+import { charactersSlice } from '../../store/inputReducer';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 interface CharacterCardI {

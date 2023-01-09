@@ -1,15 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { getAllCharacters } from './../services/Api';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { ICharacter } from '../services/types';
 
-interface InputState {
+interface InitialState {
     inputText: string,
     isModalVisible: boolean,
     searchedCharacter: ICharacter,
     allCharacters: ICharacter[],
+    loadingState: string,
 }
 
-const initialState:InputState = {
+export enum ApiStatusPendingEnum {
+    LOADING = 'LOADING',
+    LOAD = 'LOAD',
+    ERROR = 'ERROR',
+  }
+
+const initialState: InitialState = {
     inputText: '',
     isModalVisible: false,
     searchedCharacter: {
@@ -26,10 +34,16 @@ const initialState:InputState = {
         _id: ''
     },
     allCharacters: [],
-}
+    loadingState: ApiStatusPendingEnum.LOADING,
+};
 
-export const someSlice = createSlice({
-    name: 'InputSlice',
+export const getCharacters = createAsyncThunk('getCharacters', async () => {
+    const response = await getAllCharacters();
+    return response;
+  });
+
+export const charactersSlice = createSlice({
+    name: 'charactersSlice',
     initialState,
     reducers: {
         openModal(state) {
@@ -47,10 +61,23 @@ export const someSlice = createSlice({
         clearSearchedCharacter(state) {
             state.searchedCharacter = initialState.searchedCharacter;
         },
-        fetchAllCharacters(state, action: PayloadAction<ICharacter[]>) {
+        // fetchAllCharacters(state, action: PayloadAction<ICharacter[]>) {
+        //     state.allCharacters = action.payload;
+        // },
+    },
+
+    extraReducers: (builder) => {
+        builder.addCase(getCharacters.pending, (state) => {
+            state.loadingState = ApiStatusPendingEnum.LOADING;
+          });
+          builder.addCase(getCharacters.fulfilled, (state, action: PayloadAction<ICharacter[]>) => {
+            state.loadingState = ApiStatusPendingEnum.LOAD;
             state.allCharacters = action.payload;
-        },
+          });
+          builder.addCase(getCharacters.rejected, (state) => {
+            state.loadingState = ApiStatusPendingEnum.ERROR;
+          });
     },
 })
 
-export default someSlice.reducer;
+export default charactersSlice.reducer;

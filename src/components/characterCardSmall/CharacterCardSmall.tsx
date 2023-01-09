@@ -1,13 +1,13 @@
 import React from 'react';
 import { ICharacterSmall } from '../../services/types';
 import style from './CharacterCardSmall.module.scss'
-import { someSlice } from '../../store/inputReducer';
+import { charactersSlice } from '../../store/inputReducer';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 const CharacterCardSmall:React.FC = () => {
 
     const {inputText, isModalVisible, searchedCharacter} = useAppSelector(state => state.inputReducer);
-    const {changeInputText, openModal, closeModal} = someSlice.actions;
+    const {changeInputText, openModal, closeModal} = charactersSlice.actions;
     const dispatch = useAppDispatch();  
 
     return (

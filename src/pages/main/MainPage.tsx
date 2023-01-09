@@ -1,10 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import Layout from '../../components/layout/Layout';
 import Modal from '../../components/Modal/Modal';
 import style from './MainPage.module.scss';
-import { ICharacter } from '../../services/types';
-import { getAllCharacters } from '../../services/Api';
-import { someSlice } from '../../store/inputReducer';
+import { getCharacters } from '../../store/inputReducer';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 
@@ -12,12 +10,11 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 const MainPage:React.FC = () => {
 
     const {isModalVisible} = useAppSelector(state => state.inputReducer);
-    const {fetchAllCharacters} = someSlice.actions;
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        getAllCharacters().then(result => dispatch( fetchAllCharacters(result) ));
-    }, []);
+       dispatch(getCharacters());
+    }, [dispatch]);
 
     return (
         <>

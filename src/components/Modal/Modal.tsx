@@ -2,7 +2,7 @@ import React from "react";
 import CharacterCardSmall from "../characterCardSmall/CharacterCardSmall";
 import style from "./Modal.module.scss";
 import { ICharacter } from "../../services/types";
-import { someSlice } from '../../store/inputReducer';
+import { charactersSlice } from '../../store/inputReducer';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 
@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 const Modal: React.FC = () => {
   const {inputText, isModalVisible} = useAppSelector(state => state.inputReducer);
-  const {changeInputText, closeModal, clearSearchedCharacter} = someSlice.actions;
+  const {changeInputText, closeModal, clearSearchedCharacter} = charactersSlice.actions;
   const dispatch = useAppDispatch();
 
   return (

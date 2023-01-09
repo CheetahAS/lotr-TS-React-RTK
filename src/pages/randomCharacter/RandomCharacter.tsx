@@ -7,14 +7,13 @@ import { getRandom } from '../../services/randomiser';
 import { useSearchParams } from 'react-router-dom';
 import Modal from '../../components/Modal/Modal';
 import { getAllCharacters, getIDCharacter } from '../../services/Api';
-import { someSlice } from '../../store/inputReducer';
+import { charactersSlice, getCharacters } from '../../store/inputReducer';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 
 const RandomCharacter:React.FC = () => {
 
     const {isModalVisible, allCharacters} = useAppSelector(state => state.inputReducer);
-    const {fetchAllCharacters} = someSlice.actions;
     const dispatch = useAppDispatch();
 
     const [character, setCharacter] = useState<ICharacter>();
@@ -41,9 +40,9 @@ const RandomCharacter:React.FC = () => {
             getIDCharacter(paramsId).then(resp => setCharachters(resp));
         }
         if(!allCharacters) {
-            getAllCharacters().then(result => dispatch( fetchAllCharacters(result) ));
+            dispatch( getCharacters());
         } 
-    }, [allCharacters, paramsId]);
+    }, [allCharacters, dispatch, paramsId]);
 
         return (
             <>
