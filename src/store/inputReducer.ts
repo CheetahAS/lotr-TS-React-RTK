@@ -69,12 +69,12 @@ export const charactersSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(getCharacters.pending, (state) => {
             state.loadingState = ApiStatusPendingEnum.LOADING;
-          });
-          builder.addCase(getCharacters.fulfilled, (state, action: PayloadAction<ICharacter[]>) => {
+          })
+          .addCase(getCharacters.fulfilled, (state, action: PayloadAction<ICharacter[]>) => {
             state.loadingState = ApiStatusPendingEnum.LOAD;
             state.allCharacters = action.payload;
-          });
-          builder.addCase(getCharacters.rejected, (state) => {
+          })
+          .addCase(getCharacters.rejected, (state) => {
             state.loadingState = ApiStatusPendingEnum.ERROR;
           });
     },
