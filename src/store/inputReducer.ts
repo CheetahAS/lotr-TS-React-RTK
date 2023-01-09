@@ -37,10 +37,7 @@ const initialState: InitialState = {
     loadingState: ApiStatusPendingEnum.LOADING,
 };
 
-export const getCharacters = createAsyncThunk('getCharacters', async () => {
-    const response = await getAllCharacters();
-    return response;
-  });
+export const getCharacters = createAsyncThunk('getCharacters', async () => await getAllCharacters());
 
 export const charactersSlice = createSlice({
     name: 'charactersSlice',
