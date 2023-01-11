@@ -6,56 +6,51 @@ import { ICharacter } from '../../services/types';
 import { getRandom } from '../../services/randomiser';
 import { useSearchParams } from 'react-router-dom';
 import Modal from '../../components/Modal/Modal';
-import { getAllCharacters, getIDCharacter } from '../../services/Api';
-
-export const BASE_URL = "https://the-one-api.dev/v2/character";
+import { getCharacters, getCharacterById } from '../../store/inputReducer';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { ApiStatusPendingEnum } from '../../store/inputReducer'; 
 
 
 const RandomCharacter:React.FC = () => {
 
-    const [isModalVisible, setIsModalVisible] = useState(false);
-    const [character, setCharacter] = useState<ICharacter>();
-
-    const searchedCharacter = (charName:string): void => {
-        setCharacter(characters.find(({ name }) => name.toLowerCase() === charName.toLowerCase()));
-    };
+    const {isModalVisible, allCharacters, loadingStateAllChar} = useAppSelector(state => state.inputReducer);
+    const dispatch = useAppDispatch();
 
     const someNumber = getRandom();
 
-    const [characters, setCharachters] = useState<ICharacter[]>([]);
-    const [randomCharacter, setRandomCharacter] = useState<ICharacter>(characters[someNumber]);
+    const [randomCharacter, setRandomCharacter] = useState<ICharacter>(allCharacters[someNumber]);
 
     const [search, setSearch] = useSearchParams();
     const paramsId = search.get("id");
-
+    
     const getRandomCharacter = useCallback(() => {
-        if(characters.length) {
-            setRandomCharacter(characters[someNumber]);
+        if(allCharacters) {
+            setRandomCharacter(allCharacters[someNumber]);
             setSearch( {id: randomCharacter._id} );
             }
         }
-        , [characters, randomCharacter, setSearch, someNumber]
+        , [allCharacters, randomCharacter, setSearch, someNumber]
     );
 
     useEffect(() => {
         if(paramsId) {
-            getIDCharacter(paramsId).then(resp => setCharachters(resp));
-        } else {
-            getAllCharacters().then(resp => setCharachters(resp));
+            dispatch( getCharacterById(paramsId) );
         }
-    }, [characters, paramsId]);
+        if(loadingStateAllChar!== ApiStatusPendingEnum.LOAD) {
+            dispatch( getCharacters());
+        } 
+    }, [allCharacters, dispatch, paramsId]);
 
         return (
             <>
-            <Layout setIsModalVisible={setIsModalVisible} searchedCharacter={(charName) => searchedCharacter(charName)}/>
+            <Layout/>
 
-            {isModalVisible && character && <Modal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} character={character}/>}
+            {isModalVisible && <Modal/>}
 
             <div className={style.random_character_page_outer_wrapper}>
                 <div className={style.random_character_container}>
                     {randomCharacter && 
-                    <CharacterCard 
-                        character={randomCharacter} 
+                    <CharacterCard character={randomCharacter}
                         key={randomCharacter._id}/>
                     }
                     <button 

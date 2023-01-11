@@ -26,7 +26,6 @@
   border-radius: 1.25rem;
   padding-top: 2.5rem;
   margin-bottom: 6.25rem;
-  //border: 2px solid blue;
   margin-left: 2rem;
 }
 
@@ -43,6 +42,16 @@
   background-color: rgb(0, 0, 0, 0);
   }
 
+  .cls_btn {
+    position: relative;
+    left: 0.4rem;
+    height: 1rem;
+    width: 1rem;
+    background: url('../../images/close_icon.svg');
+    background-position: center;
+    background-size: cover;
+    }
+
 .modal_container button:hover {
   cursor: pointer;
   background: rgb(#a6cfeb, 0.8);
@@ -58,7 +67,7 @@
 
     .modal_container button {
       bottom: 25.3rem;
-      right: 1.8rem;
+      right: 2.2rem;
   }
 }
 
@@ -73,7 +82,7 @@
 
   .modal_container button {
     bottom: 19.8rem;
-    right: 1.8rem;
+    right: 2rem;
   }
 }
 
@@ -114,14 +123,28 @@
     }
   }
 
+  @media (min-width: 85.5rem) {
+    .modal_container button {
+      bottom: 23.7rem;
+      right: 2.5rem;
+    }
+  }
+
   @media (max-height: 48rem) {
     .modal_window {
       margin-bottom: 16.2rem;
     }
   
     .modal_container button {
-      bottom: 28.0rem;
+      bottom: 28.1rem;
       right: 2.5rem;
+    }
+  }
+
+  @media (max-height: 46.3rem) {
+    .modal_container button {
+      bottom: 19.2rem;
+      right: 2.1rem;
     }
   }
 
@@ -140,7 +163,8 @@
     }
   }
 
-  @media (max-height: 42rem) {
+
+  @media (max-height: 41.7rem) {
     .modal_window {
       width: 22rem;
       height: 25rem;
@@ -148,8 +172,21 @@
     }
 
     .modal_container button {
-      bottom: 19.3rem;
-      right: 1.8rem;
+      bottom: 19.4rem;
+      right: 2.3rem;
+    }
+  }
+
+  @media (max-height: 37.5rem) {
+    .modal_window {
+      width: 22rem;
+      height: 25rem;
+      margin-bottom: 16.2rem;
+    }
+
+    .modal_container button {
+      bottom: 15.4rem;
+      right: 2.3rem;
     }
   }
 
@@ -242,8 +279,8 @@
     }
 
     .modal_container button {
-      bottom: 17.6rem;
-      right: 2.4rem;
+      bottom: 17.5rem;
+      right: 2.2rem;
     }
   }
 
@@ -259,9 +296,8 @@
     }
 
     .modal_container button {
-      bottom: 18.1rem;
-      right: 1.8rem;
+      bottom: 18.0rem;
+      right: 2.0rem;
     }
   }
-
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IResponseCharacter} from './types';
+import { IResponseCharacter } from './types';
 
 export const getAllCharacters = async () => {
     const response = await axios.get<IResponseCharacter>(`https://the-one-api.dev/v2/character`, {headers: {

@@ -2,10 +2,9 @@ import React from 'react';
 import { ICharacter } from '../../services/types';
 import style from './CharacterCard.module.scss'
 
-
 interface CharacterCardProps {
     character: ICharacter
-}
+};
 
 const CharacterCard:React.FC<CharacterCardProps> = ({character}) => {
 
@@ -62,7 +61,7 @@ const CharacterCard:React.FC<CharacterCardProps> = ({character}) => {
                 {!character.wikiUrl ?
                 <p>wikiUrl: unknown</p>
                 :
-                <p>wikiUrl: <br /><a href={character.wikiUrl} target="_blank" rel="noreferrer">{character.wikiUrl}</a></p>
+                <p>wikiUrl: <a href={character.wikiUrl} target="_blank" rel="noreferrer">{character.wikiUrl}</a></p>
                 }
             </div>
         </div>
