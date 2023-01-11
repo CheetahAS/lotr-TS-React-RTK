@@ -6,21 +6,18 @@ import { ICharacter } from '../../services/types';
 import { getRandom } from '../../services/randomiser';
 import { useSearchParams } from 'react-router-dom';
 import Modal from '../../components/Modal/Modal';
-import { getAllCharacters, getIDCharacter } from '../../services/Api';
-import { charactersSlice, getCharacters } from '../../store/inputReducer';
+import { getCharacters, getCharacterById } from '../../store/inputReducer';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { ApiStatusPendingEnum } from '../../store/inputReducer'; 
 
 
 const RandomCharacter:React.FC = () => {
 
-    const {isModalVisible, allCharacters} = useAppSelector(state => state.inputReducer);
+    const {isModalVisible, allCharacters, loadingStateAllChar} = useAppSelector(state => state.inputReducer);
     const dispatch = useAppDispatch();
-
-    const [character, setCharacter] = useState<ICharacter>();
 
     const someNumber = getRandom();
 
-    const [characters, setCharachters] = useState<ICharacter[]>([]);
     const [randomCharacter, setRandomCharacter] = useState<ICharacter>(allCharacters[someNumber]);
 
     const [search, setSearch] = useSearchParams();
@@ -37,9 +34,9 @@ const RandomCharacter:React.FC = () => {
 
     useEffect(() => {
         if(paramsId) {
-            getIDCharacter(paramsId).then(resp => setCharachters(resp));
+            dispatch( getCharacterById(paramsId) );
         }
-        if(!allCharacters) {
+        if(loadingStateAllChar!== ApiStatusPendingEnum.LOAD) {
             dispatch( getCharacters());
         } 
     }, [allCharacters, dispatch, paramsId]);

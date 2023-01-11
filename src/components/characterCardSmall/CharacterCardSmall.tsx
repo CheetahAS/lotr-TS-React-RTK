@@ -1,16 +1,13 @@
 import React from 'react';
-import { ICharacterSmall } from '../../services/types';
 import style from './CharacterCardSmall.module.scss'
-import { charactersSlice } from '../../store/inputReducer';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { useAppSelector } from '../../store/hooks';
 
 const CharacterCardSmall:React.FC = () => {
 
-    const {inputText, isModalVisible, searchedCharacter} = useAppSelector(state => state.inputReducer);
-    const {changeInputText, openModal, closeModal} = charactersSlice.actions;
-    const dispatch = useAppDispatch();  
-
+    const {searchedCharacter} = useAppSelector(state => state.inputReducer);
     return (
+    <>
+        {searchedCharacter && ( 
         <div className={style.character_wrapper}>
             <div className={style.character}>
                 <div className={style.image}/>
@@ -28,7 +25,8 @@ const CharacterCardSmall:React.FC = () => {
                 }
             </div>
         </div>
-        
+        )}
+    </>   
     );
 };
 

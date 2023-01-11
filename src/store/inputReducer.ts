@@ -1,4 +1,4 @@
-import { getAllCharacters } from './../services/Api';
+import { getAllCharacters, getIDCharacter } from './../services/Api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { ICharacter } from '../services/types';
@@ -6,9 +6,11 @@ import { ICharacter } from '../services/types';
 interface InitialState {
     inputText: string,
     isModalVisible: boolean,
-    searchedCharacter: ICharacter,
+    searchedCharacter: ICharacter | null,
     allCharacters: ICharacter[],
-    loadingState: string,
+    loadingStateAllChar: string,
+    loadingStateIDChar: string,
+    randonChar: ICharacter[] | null,
 }
 
 export enum ApiStatusPendingEnum {
@@ -20,24 +22,15 @@ export enum ApiStatusPendingEnum {
 const initialState: InitialState = {
     inputText: '',
     isModalVisible: false,
-    searchedCharacter: {
-        birth: '',
-        death: '',
-        gender: '',
-        hair: '',
-        height: '',
-        name: '',
-        race: '',
-        realm: '',
-        spouse: '',
-        wikiUrl: '',
-        _id: ''
-    },
+    searchedCharacter: null,
     allCharacters: [],
-    loadingState: ApiStatusPendingEnum.LOADING,
+    loadingStateAllChar: ApiStatusPendingEnum.LOADING,
+    loadingStateIDChar: ApiStatusPendingEnum.LOADING,
+    randonChar: null,
 };
 
 export const getCharacters = createAsyncThunk('getCharacters', async () => await getAllCharacters());
+export const getCharacterById = createAsyncThunk('getCharacterById', async (someID:string) => await getIDCharacter(someID));
 
 export const charactersSlice = createSlice({
     name: 'charactersSlice',
@@ -58,23 +51,30 @@ export const charactersSlice = createSlice({
         clearSearchedCharacter(state) {
             state.searchedCharacter = initialState.searchedCharacter;
         },
-        // fetchAllCharacters(state, action: PayloadAction<ICharacter[]>) {
-        //     state.allCharacters = action.payload;
-        // },
     },
 
     extraReducers: (builder) => {
         builder.addCase(getCharacters.pending, (state) => {
-            state.loadingState = ApiStatusPendingEnum.LOADING;
+            state.loadingStateAllChar = ApiStatusPendingEnum.LOADING;
           })
           .addCase(getCharacters.fulfilled, (state, action: PayloadAction<ICharacter[]>) => {
-            state.loadingState = ApiStatusPendingEnum.LOAD;
+            state.loadingStateAllChar = ApiStatusPendingEnum.LOAD;
             state.allCharacters = action.payload;
           })
           .addCase(getCharacters.rejected, (state) => {
-            state.loadingState = ApiStatusPendingEnum.ERROR;
+            state.loadingStateAllChar = ApiStatusPendingEnum.ERROR;
           });
-    },
+        builder.addCase(getCharacterById.pending, (state) => {
+            state.loadingStateIDChar = ApiStatusPendingEnum.LOADING;
+          })
+          .addCase(getCharacterById.fulfilled, (state, action: PayloadAction<ICharacter[]>) => {
+            state.loadingStateIDChar = ApiStatusPendingEnum.LOAD;
+            state.randonChar = action.payload;
+          })
+          .addCase(getCharacterById.rejected, (state) => {
+            state.loadingStateIDChar = ApiStatusPendingEnum.ERROR;
+          });
+        },
 })
 
 export default charactersSlice.reducer;

@@ -1,14 +1,12 @@
 import React from 'react';
 import { ICharacter } from '../../services/types';
 import style from './CharacterCard.module.scss'
-import { charactersSlice } from '../../store/inputReducer';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
-interface CharacterCardI {
+interface CharacterCardProps {
     character: ICharacter
 };
 
-const CharacterCard:React.FC<CharacterCardI> = ({character}) => {
+const CharacterCard:React.FC<CharacterCardProps> = ({character}) => {
 
     return (
         <div className={style.character_wrapper}>

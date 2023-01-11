@@ -1,17 +1,16 @@
 import { NavLink } from 'react-router-dom';
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent } from 'react'
 import style from './Layout.module.scss';
 import { getCookie } from 'typescript-cookie';
 import { charactersSlice } from '../../store/inputReducer';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { useEffect } from 'react';
-import { getAllCharacters } from '../../services/Api';
+
 
 
 const Layout:React.FC = () => {
 
-  const {inputText, isModalVisible, allCharacters} = useAppSelector(state => state.inputReducer);
-  const {changeInputText, openModal, defineSearchedCharacter, clearSearchedCharacter} = charactersSlice.actions;
+  const {inputText, allCharacters} = useAppSelector(state => state.inputReducer);
+  const {changeInputText, openModal, defineSearchedCharacter} = charactersSlice.actions;
   const dispatch = useAppDispatch();
 
   const inputedCharacter = allCharacters.find((chrs) => chrs.name.toLowerCase() === inputText.toLowerCase())
