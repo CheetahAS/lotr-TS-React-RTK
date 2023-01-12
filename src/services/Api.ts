@@ -1,10 +1,24 @@
 import axios from 'axios';
 import { IResponseCharacter } from './types';
 
-export const getAllCharacters = async () => {
-    const response = await axios.get<IResponseCharacter>(`https://the-one-api.dev/v2/character`, {headers: {
+export const getAllCharacters = async (obj?: { page: string, limit: string}) => {
+    let response
+    if (obj) {
+        response = await axios.get<IResponseCharacter>(`https://the-one-api.dev/v2/character`, {
+            headers: {
+            Authorization: 'Bearer RvUZKnn3jhhUA2PEhvOO'
+            },
+            params: {
+                page: obj.page,
+                limit: obj.limit
+            }
+        });
+    } 
+    response = await axios.get<IResponseCharacter>(`https://the-one-api.dev/v2/character`, {
+        headers: {
         Authorization: 'Bearer RvUZKnn3jhhUA2PEhvOO'
-        }
+        },
+
     });
     return response.data.docs;
 };

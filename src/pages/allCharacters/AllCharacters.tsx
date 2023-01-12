@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import CharacterCard from '../../components/characterCard/CharacterCard';
 import Layout from '../../components/layout/Layout';
 import style from './AllCharacters.module.scss'
@@ -14,12 +14,21 @@ const AllCharacters:React.FC = () => {
     useEffect(() => {
         dispatch(getCharacters());
     }, [dispatch]);
+
+    const [page, setPage] = useState(1);
+
+    const handlePageIncrement = useCallback(() => {
+        setPage((prev) => prev + 1);
+        dispatch(getCharacters({page: String(page), limit: '10' }))
+    }, [dispatch, page]);
     
     return (
         <>
         <Layout/>
         {isModalVisible && <Modal/>} 
         <div className={style.all_charachters_page_outer_wrapper}>
+            <button>{page}</button>
+            <button onClick={handlePageIncrement}>next page</button>
             <div className={style.character_container}>
                 {allCharacters?.map(character => 
                     <CharacterCard character={character} key={character._id}/>

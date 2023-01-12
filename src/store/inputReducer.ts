@@ -29,8 +29,8 @@ const initialState: InitialState = {
     randonChar: null,
 };
 
-export const getCharacters = createAsyncThunk('getCharacters', async () => await getAllCharacters());
-export const getCharacterById = createAsyncThunk('getCharacterById', async (someID:string) => await getIDCharacter(someID));
+export const getCharacters = createAsyncThunk('getCharacters', async (obj?: { page: string, limit: string}) => await getAllCharacters(obj));
+export const getCharacterById = createAsyncThunk('getCharacterById', async (someID: string) => await getIDCharacter(someID));
 
 export const charactersSlice = createSlice({
     name: 'charactersSlice',
