@@ -4,7 +4,7 @@ import { rootReducer } from './rootReducer';
 export const setupStore = () => {
     return configureStore({
         reducer: rootReducer
-    })
+    });
 };
 
 export const store = setupStore();

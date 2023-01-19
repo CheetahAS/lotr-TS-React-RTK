@@ -20,7 +20,6 @@ const AppRouter:React.FC = () => {
             <Route path="/main" element={<MainPage/>}/>
             <Route path='/all-lotr-characters' element={<AllCharacters/>}/> 
             <Route path='/random-character' element={<RandomCharacter/>}/>
-            <Route path='/???' element={<LoginPage logIn={logIn}/>}/> {/* Some tab to add latelys */}
         </Routes> 
     );
 };

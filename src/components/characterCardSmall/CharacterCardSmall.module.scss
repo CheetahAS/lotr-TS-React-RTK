@@ -26,7 +26,7 @@ border-image-outset: 3rem;
 .image {
 height: 15rem;
 width: 15rem;
-background: url('../../images/legolas.jpg');
+background: url('../../images/The_one_ring.jpg');
 background-position: center;
 background-size: cover;
 border-radius: 50%;
@@ -137,11 +137,12 @@ word-wrap: break-word;
 
 @media (max-height: 42rem) {
   .character {
-    padding-top: 3rem;
+    padding-top: 1rem;
   }
   .image {
-    height: 7rem;
-    width: 7rem;
+    margin-top: 2rem;
+    height: 5rem;
+    width: 5rem;
   }
 }
 
@@ -151,11 +152,11 @@ word-wrap: break-word;
   }
 
   .image {
-    height: 7.5rem;
-    width: 7.5rem;
+    height: 6rem;
+    width: 6rem;
     border-image-outset: 1.5rem;
     margin-bottom: 0;
-    margin-top: 0;
+    margin-top: 2rem;
   }
 
   p {

@@ -23,4 +23,13 @@ export interface ICharacterSmall {
 
 export interface IResponseCharacter {
     docs: ICharacter[]
+    pages: string
+    page: string
+    limit: string
+    total: string
+};
+
+export interface IOption {
+    value: number
+    name: string
 };

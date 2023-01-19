@@ -16,19 +16,19 @@ const Modal: React.FC = () => {
             dispatch( closeModal() );
             dispatch( changeInputText('') );
             dispatch( clearSearchedCharacter() );
-  }, [dispatch])
+  }, [dispatch]);
 
   return (
-<>
-    {isModalVisible && (
-      <div className={style.modal_container}>
-        <div className={style.modal_window}>
-          <CharacterCardSmall/>
+    <>
+      {isModalVisible && (
+        <div className={style.modal_container}>
+          <div className={style.modal_window}>
+            <CharacterCardSmall/>
+          </div>
+          <button onClick={closeCard}><div className={style.cls_btn}/></button>
         </div>
-        <button onClick={closeCard}><div className={style.cls_btn}/></button>
-      </div>
-    )}
-  </>
+      )}
+    </>
   )
 };
 

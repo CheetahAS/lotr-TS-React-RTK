@@ -1,19 +1,22 @@
 import { NavLink } from 'react-router-dom';
-import { ChangeEvent } from 'react'
+import { useCallback } from 'react'
 import style from './Layout.module.scss';
-import { getCookie } from 'typescript-cookie';
-import { charactersSlice } from '../../store/inputReducer';
+import { Cookies } from 'typescript-cookie';
+import { ApiStatusPendingEnum, charactersSlice } from '../../store/inputReducer';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-
+import { getAll933Characters } from '../../store/inputReducer';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
 
 const Layout:React.FC = () => {
 
-  const {inputText, allCharacters} = useAppSelector(state => state.inputReducer);
+  const {inputText, all933Char, loadingStateAll933Char} = useAppSelector(state => state.inputReducer);
   const {changeInputText, openModal, defineSearchedCharacter} = charactersSlice.actions;
   const dispatch = useAppDispatch();
 
-  const inputedCharacter = allCharacters.find((chrs) => chrs.name.toLowerCase() === inputText.toLowerCase())
+  let inputedCharacter = all933Char?.find((chrs) => chrs.name.toLowerCase() === inputText.toLowerCase())
+
 
   const modalBtnHandler = () => {
     if(inputedCharacter && inputText) {
@@ -25,9 +28,17 @@ const Layout:React.FC = () => {
     }
   };
 
-  const inputHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    dispatch( changeInputText(event.currentTarget.value) );
-  };
+    const inputFetch = useCallback(() => {
+      if(all933Char.length < 933) {
+        dispatch( getAll933Characters() );
+      }
+    }
+    ,[all933Char.length]
+  );
+
+  if(loadingStateAll933Char === ApiStatusPendingEnum.ERROR) {
+    alert('the server is overloaded, please try it later')
+  }
 
   return (
       <div className={style.navBar_outer_wrapper}>
@@ -53,23 +64,30 @@ const Layout:React.FC = () => {
                     if(isActive) linkClasses.push(style.appBar__item_active)
                     return linkClasses.join(" ");
                   }}>random character</NavLink>
-
-                  <NavLink to='/login' className={({isActive}) => {
-                    const linkClasses = [style.appBar__item];
-                    if(isActive) linkClasses.push(style.appBar__item_active)
-                    return linkClasses.join(" ");
-                  }}>some my own tab</NavLink>
                   
             </div>
             <div className={style.appBar__search_wrapper}>
-              <input className={style.appBar__search} placeholder="enter name of the char." onChange={inputHandler} value={inputText}/>
+              <Autocomplete
+                  inputValue={inputText}
+                    onInputChange={(event, newInputValue) => {
+                      dispatch( changeInputText(newInputValue) );
+                      }}
+                    id="controllable-states-demo"
+                    options={all933Char.map((item) => item.name)}
+                    sx={{ width: '14rem', backgroundColor: 'white', borderRadius: '0.625rem'}}
+                    renderInput={(params) => <TextField {...params} label="Enter a character"  
+                    className={style.autocomplete}
+                    onClick={inputFetch}
+                    />}
+                    
+            />
               <button onClick={modalBtnHandler} disabled={!inputText}>find!</button>
             </div>
             <div className={style.appBar__logout}>
-              <span>Hello, <strong>{getCookie('name')}</strong>!</span>
+              <span>Hello, <strong>{String(Cookies.get('user'))}</strong>!</span>
               <NavLink to='/login' 
                 className={style.appBar__logout__btn}>
-                <button>logout</button>
+                <button onClick={() => Cookies.remove('user')}>logout</button>
               </NavLink>
             </div>
         </div>
