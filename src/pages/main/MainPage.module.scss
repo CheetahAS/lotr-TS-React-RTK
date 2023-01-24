@@ -4,8 +4,8 @@
 }
 
 .main_page_outer_wrapper {
-background: url(../../images/mainPageImg.jpg);
-overflow-y: scroll;
+  background: url(../../images/mainPageImg.jpg);
+  overflow-y: scroll;
 }
 
 .main_page_inner_wrapper {
@@ -43,8 +43,9 @@ overflow-y: scroll;
 }
 
 h1 {
-font-family: lotrFont;
-font-size: 2rem;
-text-align: center;
-margin: 1rem 0 1rem 0;
+  font-family: lotrFont;
+  font-size: 2rem;
+  text-align: center;
+  margin: 1rem 0 1rem 0;
+  width: 100%;
 }

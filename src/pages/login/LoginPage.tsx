@@ -1,26 +1,24 @@
 import React, { useState } from 'react';
 import style from './LoginPage.module.scss'
 import { Link } from "react-router-dom"
-import { setCookie, removeCookie } from 'typescript-cookie';
-
+import { Cookies } from 'typescript-cookie';
 
 interface MainPageProps {
     logIn: () => void
-}
-
+};
 
 const LoginPage:React.FC<MainPageProps> = ({logIn}) => {
-    const [textFieldValue, setTextFieldValue] = useState<string>('')
+    const [textFieldValue, setTextFieldValue] = useState<string>('');
 
     const textFieldHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setTextFieldValue(event.target.value)
-    }
+        setTextFieldValue(event.target.value);
+    };
 
-    const buttonHandler = (textFieldValue: string) => {
+    const buttonHandler = () => {
         logIn();
-        setCookie('name', textFieldValue);
-        removeCookie('user');
-    }
+    };
+
+    Cookies.set('user', textFieldValue);
 
     return (
         <div className={style.login_page_outer_wrapper}>
@@ -36,7 +34,7 @@ const LoginPage:React.FC<MainPageProps> = ({logIn}) => {
                     <Link to='/main'>
                         <button
                             className={style.login_btn}
-                            onClick={() => buttonHandler(textFieldValue)}
+                            onClick={buttonHandler}
                             disabled = {textFieldValue ? false : true}
                         >log in</button>
                     </Link>
